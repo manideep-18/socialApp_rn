@@ -37,3 +37,47 @@ export const signUp=(data)=>async (dispatch)=>{
         })
     })
 }
+
+export const signIn=(data)=>async (dispatch)=>{
+    console.log(data)
+    const {email,password}=data
+
+    auth()
+    .signInWithEmailAndPassword(email,password)
+    .then(()=>{
+        console.log("Sign in Success")
+        Snackbar.show({
+            text:'account signin',
+            textColor:'white',
+            backgroundColor:'#1b262c'
+        })
+    })
+    .catch((error)=>{
+        console.log(error)
+        Snackbar.show({
+            text:'Signin failed',
+            textColor:'white',
+            backgroundColor:'red'
+        })
+    })
+}
+
+export const signOut=()=>async(dispatch)=>{
+    auth()
+    .signOut()
+    .then(()=>{
+        Snackbar.show({
+            text:'Sign out Success',
+            textColor:'white',
+            backgroundColor:'#1b262c'
+        })
+    })
+    .catch((error)=>{
+        console.log(error)
+        Snackbar.show({
+            text:'Sign out failed',
+            textColor:'white',
+            backgroundColor:'red'
+        })
+    })
+}
