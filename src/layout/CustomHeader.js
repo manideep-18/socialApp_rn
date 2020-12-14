@@ -16,7 +16,7 @@ import {signOut} from '../action/auth'
 const CustomHeader=({authState,navigation,signOut})=>{
     return(
        <Header
-       androidStatusBarColor="#0f4c75"
+       androidStatusBarColor={"#0f4c75"}
        style={{backgroundColor:"#0f4c75"}}
        >
            <Body>
@@ -45,9 +45,9 @@ const CustomHeader=({authState,navigation,signOut})=>{
     )
 }
 
-const mapStateToProps=(state)=>{
+const mapStateToProps=(state)=>({
     authState:state.auth
-}
+})
 
 const mapDispatchToProps={
     signOut

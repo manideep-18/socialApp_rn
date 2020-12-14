@@ -84,8 +84,8 @@ const App=({authState})=>{
    )
 }
 
-const mapStateToProps=(state)=>{
+const mapStateToProps=(state)=>({
   authState:state.auth
-}
+})
 
 export default connect(mapStateToProps,null)(App)
