@@ -32,6 +32,49 @@ const SignUp=({signUp})=>{
     const [imageUploading,setImageUploading]=useState(false)
     const [uploadStatus,setUploadStatus]=useState(null)
 
+    const chooseImage=async()=>{
+        ImagePicker.showImagePicker(options,(respose)=>{
+            console.log("Respose =",respose)
+
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+              } else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+              } else if (response.customButton) {
+                console.log('User tapped custom button: ', response.customButton);
+              } else {
+               console.log(respose)
+               uploadImage(respose)
+              }
+            
+                // You can also display the image using data:
+                // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+        })
+    }
+
+    const uploadImage=async(response)=>{
+        setImageUploading(true)
+        const reference=storage().ref(response.fileName)
+
+        const task=reference.putFile(response.path)
+        task.on('state_changed',(takeSnapshot)=>{
+            const percentage=((takeSnapshot.bytesTransferred/takeSnapshot.totalBytes))*1000
+
+            setUploadStatus(percentage)
+        })
+
+        task.then(async()=>{
+            const url=await reference.getDownloadURL()
+
+            setImage(url)
+            setImageUploading(false)
+        })
+    }
+
+    const doSignUp=async()=>{
+        SignUp({name,instaUserName,bio,country,email,password,image})
+    }
+
     return(
         <>
         <Text>Hello from SignUp</Text>
