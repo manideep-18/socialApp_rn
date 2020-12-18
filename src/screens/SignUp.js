@@ -72,7 +72,7 @@ const SignUp=({signUp})=>{
     }
 
     const doSignUp=async()=>{
-        signUp({name,instaUserName,bio,country,email,password,image})
+        signUp({name,email,password,instaUserName,bio,country,image})
     }
 
     return (

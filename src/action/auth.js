@@ -6,7 +6,7 @@ export const signUp=(data)=>async (dispatch)=>{
     console.log(data)
     const {name,instaUserName,bio,email,password,country,image}=data
 
-    auth().createUserWithEmailAndPassword(email,password)
+    auth().createUserWithEmailAndPassword(email.trim(),password)
     .then((data)=>{
         console.log(data)
         console.log("User creation was success")
