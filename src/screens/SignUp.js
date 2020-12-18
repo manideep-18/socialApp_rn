@@ -12,7 +12,7 @@ import {
 } from 'native-base'
 import storage from '@react-native-firebase/storage'
 import ProgressBar from 'react-native-progress/Bar'
-import ImagePicker from 'react-native-image-picker'
+import * as ImagePicker from 'react-native-image-picker'
 import propTypes from 'prop-types'
 
 
@@ -72,7 +72,7 @@ const SignUp=({signUp})=>{
     }
 
     const doSignUp=async()=>{
-        SignUp({name,instaUserName,bio,country,email,password,image})
+        signUp({name,instaUserName,bio,country,email,password,image})
     }
 
     return (
