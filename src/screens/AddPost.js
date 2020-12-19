@@ -16,7 +16,7 @@ import Snackbar from 'react-native-snackbar'
 import ProgressBar from 'react-native-progress/Bar'
 import database from '@react-native-firebase/database'
 import storage from '@react-native-firebase/storage'
-import ImagePicker from 'react-native-image-picker'
+import {launchImageLibrary} from 'react-native-image-picker'
 import options from '../utils/Options'
 
 import {connect} from 'react-redux'
@@ -33,7 +33,7 @@ const AddPost=({navigation,userState})=>{
     const [uploadStatus,setUploadStatus]=useState(null)
 
     const chooseImage=async()=>{
-        ImagePicker.showImagePicker(options,(response)=>{
+        launchImageLibrary(options,(response)=>{
             console.log("Response =",response)
 
             if (response.didCancel) {
@@ -56,7 +56,7 @@ const AddPost=({navigation,userState})=>{
         setImageUploading(true)
         const reference=storage().ref(response.fileName)
 
-        const task=reference.putFile(response.path)
+        const task=reference.putFile(response.uri)
         task.on('state_changed',(takeSnapshot)=>{
             const percentage=((takeSnapshot.bytesTransferred/takeSnapshot.totalBytes))*1000
 

@@ -12,7 +12,7 @@ import {
 } from 'native-base'
 import storage from '@react-native-firebase/storage'
 import ProgressBar from 'react-native-progress/Bar'
-import * as ImagePicker from 'react-native-image-picker'
+import {launchImageLibrary} from 'react-native-image-picker'
 import propTypes from 'prop-types'
 
 
@@ -33,7 +33,7 @@ const SignUp=({signUp})=>{
     const [uploadStatus,setUploadStatus]=useState(null)
 
     const chooseImage=async()=>{
-        ImagePicker.showImagePicker(options,(response)=>{
+        launchImageLibrary(options,(response)=>{
             console.log("Response =",response)
 
             if (response.didCancel) {
@@ -56,7 +56,7 @@ const SignUp=({signUp})=>{
         setImageUploading(true)
         const reference=storage().ref(response.fileName)
 
-        const task=reference.putFile(response.path)
+        const task=reference.putFile(response.uri)
         task.on('state_changed',(takeSnapshot)=>{
             const percentage=((takeSnapshot.bytesTransferred/takeSnapshot.totalBytes))*1000
 
