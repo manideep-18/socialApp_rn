@@ -1,6 +1,7 @@
 import auth from '@react-native-firebase/auth'
 import Snackbar from 'react-native-snackbar'
 import database from '@react-native-firebase/database'
+import { SET_USER } from './action.types'
 
 export const signUp=(data)=>async (dispatch)=>{
     console.log(data)
@@ -11,6 +12,8 @@ export const signUp=(data)=>async (dispatch)=>{
         console.log(data)
         console.log("User creation was success")
 
+        
+        
         database()
         .ref('/users' + data.user.uid)
         .set({

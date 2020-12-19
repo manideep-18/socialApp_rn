@@ -6,7 +6,7 @@ import database from '@react-native-firebase/database'
 import {NavigationContainer, StackActions} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
 import {useDispatch,connect } from 'react-redux'
-import { IS_AUTHENTICATED, SET_POST } from './action/action.types'
+import { IS_AUTHENTICATED, SET_POST, SET_USER } from './action/action.types'
 import { useEffect } from 'react'
 import { requestPermission } from './utils/AskPermissions'
 import EmptyContainer from './components/EmptyContainer'
@@ -31,12 +31,12 @@ const App=({authState})=>{
       console.log(user._user.uid)
 
       database()
-      .ref(`/user/${user._user.uid}`)
+      .ref(`/users${user._user.uid}`)
       .on('value',(snapshot)=>{
         console.log('USER DETAILS',snapshot.val())
 
         dispatch({
-          type:SET_POST,
+          type:SET_USER,
           payload:snapshot.val()
         })
       })

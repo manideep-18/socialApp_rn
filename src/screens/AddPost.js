@@ -72,6 +72,7 @@ const AddPost=({navigation,userState})=>{
     }
 
     const addPost=async ()=>{
+      console.log(userState,'???')
         try {
             if(!location || !description ||!image)
            return Snackbar.show({
@@ -172,9 +173,9 @@ const mapStateToProps=(state)=>({
     userState:state.auth.user
 })
 
-// AddPost.propTypes={
-//     userState:propTypes.object.isRequired
-// }
+AddPost.propTypes={
+    userState:propTypes.object.isRequired
+}
 
 export default connect(mapStateToProps)(AddPost)
 
