@@ -33,8 +33,8 @@ const AddPost=({navigation,userState})=>{
     const [uploadStatus,setUploadStatus]=useState(null)
 
     const chooseImage=async()=>{
-        ImagePicker.showImagePicker(options,(respose)=>{
-            console.log("Respose =",respose)
+        ImagePicker.showImagePicker(options,(response)=>{
+            console.log("Response =",response)
 
             if (response.didCancel) {
                 console.log('User cancelled image picker');
@@ -43,8 +43,8 @@ const AddPost=({navigation,userState})=>{
               } else if (response.customButton) {
                 console.log('User tapped custom button: ', response.customButton);
               } else {
-               console.log(respose)
-               uploadImage(respose)
+               console.log(response)
+               uploadImage(response)
               }
             
                 // You can also display the image using data:
