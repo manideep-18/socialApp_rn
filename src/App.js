@@ -31,7 +31,7 @@ const App=({authState})=>{
       console.log(user._user.uid)
 
       database()
-      .ref(`/users${user._user.uid}`)
+      .ref(`/users/${user._user.uid}`)
       .on('value',(snapshot)=>{
         console.log('USER DETAILS',snapshot.val())
 

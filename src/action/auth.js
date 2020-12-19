@@ -15,7 +15,7 @@ export const signUp=(data)=>async (dispatch)=>{
         
         
         database()
-        .ref('/users' + data.user.uid)
+        .ref('/users/' + data.user.uid)
         .set({
             name,
             instaUserName,
